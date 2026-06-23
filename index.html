@@ -36,6 +36,8 @@
   .state { text-align:center; padding:60px 20px; color:var(--muted); }
   .state .big { font-size:17px; color:var(--ink); margin-bottom:6px; }
   .bar { height:6px; background:var(--green); border-radius:4px; margin-bottom:16px; }
+  .webbtn { display:block; text-align:center; background:var(--green); color:#fff; text-decoration:none; font-weight:700; padding:12px; border-radius:12px; margin:0 0 14px; font-size:14.5px; }
+  .webbtn:hover { background:#154d39; }
 </style>
 </head>
 <body>
@@ -66,7 +68,7 @@
     var s = d.shop || {}, c = d.customer || {};
     var bal = Number(d.balanceP) || 0;
     var cls = bal > 0 ? 'owe' : bal < 0 ? 'adv' : 'zero';
-    var label = bal > 0 ? 'You owe' : bal < 0 ? 'Advance with shop' : 'Account settled';
+    var label = bal > 0 ? 'بقایا' : bal < 0 ? 'جمع' : 'برابر';
     var labelUr = bal > 0 ? 'آپ کے ذمے' : bal < 0 ? 'آپ کا جمع' : 'حساب برابر';
     var rows = (d.rows || []).slice().reverse();  // newest first
     var body = rows.map(function (e) {
@@ -86,6 +88,7 @@
         (s.tagline ? '<div class="tag">' + esc(s.tagline) + '</div>' : '') +
         (meta ? '<div class="meta">' + meta + '</div>' : '') +
       '</div>' +
+      '<a class="webbtn" href="' + location.origin + '" target="_blank" rel="noopener">🌐 Visit our website · ہماری ویب سائٹ دیکھیں</a>' +
       '<div class="card who">Account for<b>' + esc(c.name || '') + '</b></div>' +
       '<div class="card bal"><div class="k">' + esc(label) + ' / ' + esc(labelUr) + '</div>' +
         '<div class="v ' + cls + '">' + rs(Math.abs(bal)) + '</div>' +
